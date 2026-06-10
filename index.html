@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRSCWP : 로봇 / 스포츠 / 커피 동호회 웹 플랫폼</title>
+  <meta name="description" content="Community for Robots, Sports, and Coffees Web Platform (CRSCWP)">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Global Header -->
+  <header>
+    <div class="logo" id="logo-btn" onclick="renderView('home')">CRSCWP</div>
+    
+    <!-- User / Auth Actions -->
+    <div class="nav-actions" id="nav-guest-actions">
+      <button class="btn btn-secondary" onclick="showModal('login')">로그인</button>
+      <button class="btn btn-primary" onclick="showModal('signup')">회원가입</button>
+    </div>
+    
+    <div class="nav-actions" id="nav-user-actions" style="display: none;">
+      <span id="user-display-name" style="font-weight: 600; color: var(--text-primary); font-size: 0.95rem;"></span>
+      <button class="btn btn-secondary" onclick="renderView('profile')">⚙️ 프로필</button>
+      <button class="btn btn-secondary" onclick="renderView('editor')">📝 문서 작성</button>
+      <button class="btn btn-danger" onclick="handleLogout()">로그아웃</button>
+    </div>
+  </header>
+
+  <!-- Category Nav Bar (분야 구성 바) -->
+  <nav class="category-navbar">
+    <div class="category-bar-inner">
+      <button class="category-tab active" data-category="agi" data-pillar="agi">AGI (범용 지능)</button>
+      <button class="category-tab" data-category="actf" data-pillar="actf">ACTF (로보틱스)</button>
+      <button class="category-tab" data-category="swimming" data-pillar="sports">수영</button>
+      <button class="category-tab" data-category="skydiving" data-pillar="sports">스카이다이빙</button>
+      <button class="category-tab" data-category="climbing" data-pillar="sports">암벽 등반</button>
+      <button class="category-tab" data-category="cafe" data-pillar="coffee">카페 취업</button>
+      <button class="category-tab" data-category="skills" data-pillar="coffee">기술 연마</button>
+    </div>
+  </nav>
+
+  <!-- Main View Area -->
+  <main>
+
+    <!-- 1. HOME SCREEN -->
+    <section id="view-home" class="view-screen">
+      <div class="hero">
+        <h1>로봇 / 스포츠 / 커피<br><span>동호회 웹 플랫폼</span></h1>
+        <p>CRSCWP는 Artificial General Intelligence(AGI) 및 로보틱스 혁신과 함께 스포츠 활동, 전문 바리스타 기술 연마를 융합하여 경제적 자립과 삶의 도약을 꿈꾸는 사람들의 커뮤니티 플랫폼입니다.</p>
+        <button class="btn btn-primary btn-lg" onclick="state.activeCategory='agi'; renderView('board')" style="padding: 1rem 2rem; font-size: 1.1rem;">동호회 문서 탐색하기 &rarr;</button>
+      </div>
+
+      <!-- Platform Categories Overview -->
+      <div class="grid-container">
+        <div class="glass-panel feature-card agi">
+          <div class="icon-badge">🧠</div>
+          <h3>AGI (범용 인공 지능)</h3>
+          <p>사람의 수준에 맞고 사람의 활동 및 외관을 본따서 만든 최첨단 인공지능 분야의 동향을 살피고 연구합니다.</p>
+        </div>
+        <div class="glass-panel feature-card actf">
+          <div class="icon-badge">🤖</div>
+          <h3>ACTF (사이보그 트랜스포머)</h3>
+          <p>로보틱스와 생명 연장 기술의 도약을 실천하기 위해 영화 속 트랜스포머 시스템을 현실적으로 구현해 나가는 세션입니다.</p>
+        </div>
+        <div class="glass-panel feature-card sports">
+          <div class="icon-badge">🏊</div>
+          <h3>수영 & 익스트림 스포츠</h3>
+          <p>무중력 환경을 시뮬레이션하는 수영, 중력 가속도에 대항하는 스카이다이빙 및 암벽 등반을 다룹니다.</p>
+        </div>
+        <div class="glass-panel feature-card coffee">
+          <div class="icon-badge">☕</div>
+          <h3>카페 취업 & 기술 연마</h3>
+          <p>제주도 내 최적의 주거 이전을 꿈꾸며 실천하는 경제적 자립 수단이자, 에스프레소 추출 기술을 극대화하는 바리스타 양성 코스.</p>
+        </div>
+      </div>
+
+      <!-- Platform Goals Section -->
+      <div class="platform-goals-section">
+        <h2 style="font-family: var(--font-display); text-align: center; font-size: 2rem; margin-bottom: 0.5rem;">플랫폼 핵심 목표 (Goals)</h2>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">CRSCWP가 지향하는 삶의 방향과 7대 혁신 지표</p>
+        
+        <div class="goals-grid">
+          <div class="goal-card">
+            <div class="goal-number">01</div>
+            <h4>경제 자립</h4>
+            <p>스스로 벌고 협력하는 경제 체제 구축</p>
+          </div>
+          <div class="goal-card">
+            <div class="goal-number">02</div>
+            <h4>취미 생활</h4>
+            <p>생산적인 아르바이트와 취미 연계</p>
+          </div>
+          <div class="goal-card">
+            <div class="goal-number">03</div>
+            <h4>기술 증진</h4>
+            <p>주거 이전 후 시작될 인생 최고의 기술 도약</p>
+          </div>
+          <div class="goal-card">
+            <div class="goal-number">04</div>
+            <h4>회원 모집</h4>
+            <p>같은 이상을 공유하는 동료들의 단합</p>
+          </div>
+          <div class="goal-card">
+            <div class="goal-number">05</div>
+            <h4>주거 이전</h4>
+            <p>기술 혁신을 시작할 최고의 거점 확보</p>
+          </div>
+          <div class="goal-card">
+            <div class="goal-number">06</div>
+            <h4>생명 연장</h4>
+            <p>첨단 바이오와 로보틱스의 간접 융합</p>
+          </div>
+          <div class="goal-card">
+            <div class="goal-number">07</div>
+            <h4>분야 개척</h4>
+            <p>도약의 정점인 AGI & ACTF 개척</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. DOCUMENT BOARD SCREEN -->
+    <section id="view-board" class="view-screen" style="display: none;">
+      <div class="board-header">
+        <div class="board-title">
+          <h2 id="selected-category-title">분야명</h2>
+          <p id="selected-category-desc" style="color: var(--text-secondary); margin-top: 0.25rem;">설명</p>
+        </div>
+        <div>
+          <button class="btn btn-primary" onclick="renderView('editor')">📝 새 문서 등록</button>
+        </div>
+      </div>
+
+      <div class="document-list" id="board-doc-list">
+        <!-- Javascript renders lists here -->
+      </div>
+    </section>
+
+    <!-- 3. GOOGLE DOCS STYLE EDITOR SCREEN -->
+    <section id="view-editor" class="view-screen" style="display: none;">
+      <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 1.5rem; font-weight: 800;">문서 작성 및 공유</h2>
+      
+      <div class="editor-container">
+        <!-- Main Editor (Google Docs design) -->
+        <div class="glass-panel editor-main">
+          <!-- Rich Text Formatting Toolbar -->
+          <div class="editor-toolbar">
+            <button class="editor-btn" onclick="executeEditorCommand('bold')" title="굵게"><b>B</b></button>
+            <button class="editor-btn" onclick="executeEditorCommand('italic')" title="기울임"><i>I</i></button>
+            <button class="editor-btn" onclick="executeEditorCommand('underline')" title="밑줄"><u>U</u></button>
+            <button class="editor-btn" onclick="executeEditorCommand('formatBlock', '<h3>')" title="제목3">H3</button>
+            <button class="editor-btn" onclick="executeEditorCommand('formatBlock', '<h4>')" title="제목4">H4</button>
+            <button class="editor-btn" onclick="executeEditorCommand('formatBlock', '<p>')" title="본문">Paragraph</button>
+            <button class="editor-btn" onclick="executeEditorCommand('insertUnorderedList')" title="글머리번호">• List</button>
+            <button class="editor-btn" onclick="executeEditorCommand('formatBlock', '<blockquote>')" title="인용구">Quote</button>
+          </div>
+
+          <!-- Document Content Area -->
+          <input type="text" id="editor-title" class="editor-title-input" placeholder="문서 제목을 입력해주세요">
+          
+          <div id="wysiwyg-editor" class="wysiwyg-area" contenteditable="true">
+            이곳에 내용을 구성해주세요. 구글 문서와 동일하게 서식 지정을 사용하실 수 있습니다.
+          </div>
+        </div>
+
+        <!-- Sidebar options -->
+        <div class="glass-panel editor-sidebar">
+          <div class="sidebar-title">발행 설정</div>
+          <div class="form-group">
+            <label for="editor-category-select">등록할 분야 선택</label>
+            <select id="editor-category-select" class="form-control">
+              <!-- JS builds options dynamically -->
+            </select>
+          </div>
+          
+          <button class="btn btn-primary" onclick="saveDocument()" style="width: 100%; justify-content: center; margin-top: 1rem;">🚀 플랫폼에 발행</button>
+          <button class="btn btn-secondary" onclick="renderView('board')" style="width: 100%; justify-content: center; margin-top: 0.5rem;">취소</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. DOCUMENT VIEWER SCREEN -->
+    <section id="view-doc" class="view-screen" style="display: none;">
+      <div class="glass-panel view-doc-container">
+        <div class="view-doc-header">
+          <h1 class="view-doc-title" id="view-doc-title">문서 제목</h1>
+          <div class="view-doc-meta">
+            <span id="view-doc-author">작성자: </span>
+            <span id="view-doc-date">작성일: </span>
+          </div>
+        </div>
+        <div class="view-doc-content" id="view-doc-body">
+          <!-- Document Content Loaded Here -->
+        </div>
+        <div style="margin-top: 3rem; display: flex; gap: 1rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+          <button class="btn btn-secondary" onclick="renderView('board')">&larr; 목록으로 돌아가기</button>
+          <button class="btn btn-danger" id="btn-delete-doc" onclick="deleteCurrentDocument()" style="display: none;">🗑️ 문서 삭제</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. USER PROFILE SCREEN -->
+    <section id="view-profile" class="view-screen" style="display: none;">
+      <div class="glass-panel profile-card">
+        <div class="profile-avatar" id="profile-avatar-char">👤</div>
+        <h2 style="text-align: center; font-family: var(--font-display); margin-bottom: 2rem;">내 프로필 관리</h2>
+        
+        <form onsubmit="event.preventDefault(); saveProfile();">
+          <div class="form-group">
+            <label>로그인 아이디 (변경 불가)</label>
+            <input type="text" id="prof-username" class="form-control" disabled style="opacity: 0.6;">
+          </div>
+          <div class="form-group">
+            <label for="prof-name">이름 (실명 또는 닉네임)</label>
+            <input type="text" id="prof-name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="prof-bio">한 줄 소개</label>
+            <textarea id="prof-bio" class="form-control" rows="3" placeholder="나의 경제적 자립 목표나 관심사를 적어주세요"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="prof-password">새 비밀번호 (변경할 경우에만 입력)</label>
+            <input type="password" id="prof-password" class="form-control" placeholder="새로운 비밀번호">
+          </div>
+          <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+            <button type="submit" class="btn btn-primary" style="flex: 1; justify-content: center;">변경사항 저장</button>
+            <button type="button" class="btn btn-secondary" onclick="renderView('home')">취소</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modals Section -->
+  
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="modal-login">
+    <div class="glass-panel modal-content">
+      <div class="modal-header">
+        <h3>CRSCWP 로그인</h3>
+        <button class="close-btn" onclick="hideModal('login')">&times;</button>
+      </div>
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="login-id">아이디</label>
+          <input type="text" id="login-id" class="form-control" placeholder="아이디를 입력하세요" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="login-password">비밀번호</label>
+          <input type="password" id="login-password" class="form-control" placeholder="비밀번호를 입력하세요" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">로그인</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div class="modal-overlay" id="modal-signup">
+    <div class="glass-panel modal-content">
+      <div class="modal-header">
+        <h3>CRSCWP 회원가입</h3>
+        <button class="close-btn" onclick="hideModal('signup')">&times;</button>
+      </div>
+      <form onsubmit="handleSignup(event)">
+        <div class="form-group">
+          <label for="reg-id">사용할 아이디</label>
+          <input type="text" id="reg-id" class="form-control" placeholder="아이디를 입력하세요" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-name">이름 (실명)</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="실명을 입력하세요" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-password">비밀번호</label>
+          <input type="password" id="reg-password" class="form-control" placeholder="비밀번호를 설정하세요" required autocomplete="new-password">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">가입하기</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer>
+    <p>&copy; 2026 CRSCWP (Community for Robots / Sports / Coffees Web Platform). All rights reserved.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">작성자: 정구영 | 발전 분야: Artificial General Intelligence & Android Cyborg Transformers</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
