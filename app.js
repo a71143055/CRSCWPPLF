@@ -437,10 +437,28 @@ function handleLogout() {
   renderView('home');
 }
 
+// Theme Toggle Logic
+function toggleTheme() {
+  const isDark = document.body.classList.toggle('dark-theme');
+  localStorage.setItem('crscwp_theme', isDark ? 'dark' : 'light');
+  document.getElementById('theme-toggle-btn').textContent = isDark ? '☀️' : '🌙';
+}
+
+function initTheme() {
+  const savedTheme = localStorage.getItem('crscwp_theme') || 'light';
+  const isDark = savedTheme === 'dark';
+  document.body.classList.toggle('dark-theme', isDark);
+  const toggleBtn = document.getElementById('theme-toggle-btn');
+  if (toggleBtn) {
+    toggleBtn.textContent = isDark ? '☀️' : '🌙';
+  }
+}
+
 // App Initialization
 window.addEventListener('DOMContentLoaded', () => {
   DB.init();
   updateAuthUI();
+  initTheme();
 
   // Bind Navbar categories
   document.querySelectorAll('.category-tab').forEach(tab => {

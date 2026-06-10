@@ -13,17 +13,22 @@
   <header>
     <div class="logo" id="logo-btn" onclick="renderView('home')">CRSCWP</div>
     
-    <!-- User / Auth Actions -->
-    <div class="nav-actions" id="nav-guest-actions">
-      <button class="btn btn-secondary" onclick="showModal('login')">로그인</button>
-      <button class="btn btn-primary" onclick="showModal('signup')">회원가입</button>
-    </div>
-    
-    <div class="nav-actions" id="nav-user-actions" style="display: none;">
-      <span id="user-display-name" style="font-weight: 600; color: var(--text-primary); font-size: 0.95rem;"></span>
-      <button class="btn btn-secondary" onclick="renderView('profile')">⚙️ 프로필</button>
-      <button class="btn btn-secondary" onclick="renderView('editor')">📝 문서 작성</button>
-      <button class="btn btn-danger" onclick="handleLogout()">로그아웃</button>
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <!-- Theme Toggle Button -->
+      <button class="btn btn-secondary" id="theme-toggle-btn" onclick="toggleTheme()" style="padding: 0.6rem; width: 40px; height: 40px; justify-content: center; font-size: 1.1rem; border-radius: 50%;" title="테마 변경">🌙</button>
+
+      <!-- User / Auth Actions -->
+      <div class="nav-actions" id="nav-guest-actions">
+        <button class="btn btn-secondary" onclick="showModal('login')">로그인</button>
+        <button class="btn btn-primary" onclick="showModal('signup')">회원가입</button>
+      </div>
+      
+      <div class="nav-actions" id="nav-user-actions" style="display: none;">
+        <span id="user-display-name" style="font-weight: 600; color: var(--text-primary); font-size: 0.95rem;"></span>
+        <button class="btn btn-secondary" onclick="renderView('profile')">⚙️ 프로필</button>
+        <button class="btn btn-secondary" onclick="renderView('editor')">📝 문서 작성</button>
+        <button class="btn btn-danger" onclick="handleLogout()">로그아웃</button>
+      </div>
     </div>
   </header>
 
